@@ -2,7 +2,8 @@
 
 # NLP-model-for-MCA-eConsultation-Sentiment-Analysis
 
-<p align="center">A sentiment classification system built to analyze public comments submitted on the MCA (Ministry of Corporate Affairs) eConsultation platform, where citizens comment on proposed rules and regulations. The model classifies each comment as **Positive**, **Negative**, or **Neutral**, and generates a word cloud + summary report to help visualize public opinion at a glance.
+<!-- <p align="center"> -->
+A sentiment classification system built to analyze public comments submitted on the MCA (Ministry of Corporate Affairs) eConsultation platform, where citizens comment on proposed rules and regulations. The model classifies each comment as **Positive**, **Negative**, or **Neutral**, and generates a word cloud + summary report to help visualize public opinion at a glance.
 
 Originally built as a hackathon prototype.
 
