@@ -1,4 +1,4 @@
-<div align="center">
+<!-- <div align="center"> -->
 
 # NLP-model-for-MCA-eConsultation-Sentiment-Analysis
 
@@ -43,7 +43,7 @@ To sanity-check this, I tested the model on hand-written, natural-sounding sente
 
 [🐛 Report Bug](https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis/issues) · [✨ Request Feature](https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis/issues)
 
-</div>
+<!-- </div> -->
 
 ---
 
