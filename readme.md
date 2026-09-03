@@ -64,12 +64,22 @@ To sanity-check this, I tested the model on hand-written, natural-sounding sente
 
 ## 📸 Screenshots
 
-> Add your screenshots here.
+> Here is the sentiment distribution table.
 
-![Screenshot](./results/sentiment%20wordcloud.png)
-![Screenshot](./results/positive%20wordcloud.png)
+![Screenshot](./results/sentiment%20distribution.png)
+
+> Here is the positive wordcloud.
+
+![Screenshot](./results/positive%20wordcloud.png)\
+
+> Here is the negative wordcloud.
+
 ![Screenshot](./results/negative%20wordcloud.png)
+
+> Here is the neutral wordcloud.
+
 ![Screenshot](./results/neutral%20wordcloud.png)
+
 
 ## ⚙️ Prerequisites
 
