@@ -66,7 +66,10 @@ To sanity-check this, I tested the model on hand-written, natural-sounding sente
 
 > Add your screenshots here.
 
-![Screenshot](./screenshots/screenshot.png)
+![Screenshot](./results/sentiment%20wordcloud.png)
+![Screenshot](./results/positive%20wordcloud.png)
+![Screenshot](./results/negative%20wordcloud.png)
+![Screenshot](./results/neutral%20wordcloud.png)
 
 ## ⚙️ Prerequisites
 
