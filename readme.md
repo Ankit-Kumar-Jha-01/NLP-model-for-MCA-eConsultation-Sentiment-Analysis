@@ -1,164 +1,199 @@
-<!-- <div align="center"> -->
+<div align="center">
 
-# NLP-model-for-MCA-eConsultation-Sentiment-Analysis
+# 💬 MCA eConsultation — Sentiment Analysis (NLP)
 
-<!-- <p align="center"> -->
-A sentiment classification system built to analyze public comments submitted on the MCA (Ministry of Corporate Affairs) eConsultation platform, where citizens comment on proposed rules and regulations. The model classifies each comment as **Positive**, **Negative**, or **Neutral**, and generates a word cloud + summary report to help visualize public opinion at a glance.
+**A leakage-free DistilBERT pipeline for classifying public comments on proposed MCA rules as Positive, Negative, or Neutral**
 
-Originally built as a hackathon prototype.
+![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Transformers](https://img.shields.io/badge/🤗_Transformers-4.56.0-FFD21E?style=for-the-badge)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![DistilBERT](https://img.shields.io/badge/Model-DistilBERT-blue?style=for-the-badge)
+![Colab](https://img.shields.io/badge/Google_Colab-Trained-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-## Problem
-
-When a new rule or regulation is proposed, the MCA platform receives large volumes of public comments. Reading through all of them manually to gauge public sentiment isn't practical at scale. This project automates that — given a batch of comments, it predicts the overall sentiment split and surfaces the most common themes.
-
-## Approach
-
-- Fine-tuned **DistilBERT** for 3-class sentiment classification (positive / negative / neutral)
-- Built a modular **text preprocessing pipeline** (emoji removal, special character cleanup, normalization) — implemented as a chain of independent steps so techniques can be added or removed without touching other code
-- Used **data augmentation** (synonym replacement, random insertion, swap, deletion) to expand the training set, with a stratified train/val/test split performed *before* augmentation to prevent data leakage between splits
-- Generated a **word cloud** and a short **summary report** (sentiment breakdown + most common words per class) from model predictions
-
-## Dataset
-
-Due to the private, government-hosted nature of real MCA eConsultation data, this prototype uses a synthetic dataset (5,000+ comments) generated with an LLM and labeled by sentiment, meant to simulate the structure of real platform comments for the hackathon build.
-
-## Tech Stack
-
-Python, PyTorch, Hugging Face Transformers (DistilBERT), scikit-learn, nlpaug, pandas, WordCloud, NLTK
-
-## Results & Honest Limitations
-
-The model reaches ~99–100% accuracy on the held-out test set. This is expected given the synthetic dataset — LLM-generated comments per sentiment class tend to follow clean, repeated patterns, making the classification task easier than it would be on real, messy human writing.
-
-To sanity-check this, I tested the model on hand-written, natural-sounding sentences outside the dataset (hedged opinions, idioms, mixed-tone comments). It handled clearly positive/negative cases well but misclassified idiomatic phrasing — e.g. it labeled *"no complaints so far"* as Negative, latching onto the word "complaints" without recognizing the negation flips the meaning. This points to the model learning surface-level word patterns from the synthetic data rather than deeper language understanding - a known limitation that real, human-labeled training data would help address.
-
-## What I'd Improve With More Time
-
-- Train on real MCA comments (or a more varied, noisy synthetic set with sarcasm/hedging/negation examples)
-- Add negation-aware preprocessing or a rule-based override layer for common idioms
-- Expand evaluation with a dedicated "hard examples" test set, separate from the main test split.</p>
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-
-![Python](https://img.shields.io/badge/-Python-555?style=flat-square&logo=python) ![PyTorch](https://img.shields.io/badge/-PyTorch-555?style=flat-square&logo=pytorch) ![Hugging Face Transformers](https://img.shields.io/badge/-Hugging%20Face%20Transformers-555?style=flat-square&logo=hugging%20face%20transformers) ![DistilBERT](https://img.shields.io/badge/-DistilBERT-555?style=flat-square&logo=distilbert) ![scikit-learn](https://img.shields.io/badge/-scikit-learn-555?style=flat-square&logo=scikit-learn) ![nlpaug](https://img.shields.io/badge/-nlpaug-555?style=flat-square&logo=nlpaug) ![pandas](https://img.shields.io/badge/-pandas-555?style=flat-square&logo=pandas) ![NumPy](https://img.shields.io/badge/-NumPy-555?style=flat-square&logo=numpy) ![NLTK](https://img.shields.io/badge/-NLTK-555?style=flat-square&logo=nltk) ![WordCloud](https://img.shields.io/badge/-WordCloud-555?style=flat-square&logo=wordcloud) ![Matplotlib](https://img.shields.io/badge/-Matplotlib-555?style=flat-square&logo=matplotlib) ![Google Colab](https://img.shields.io/badge/-Google%20Colab-555?style=flat-square&logo=google%20colab)
-
-[🐛 Report Bug](https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis/issues) · [✨ Request Feature](https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis/issues)
-
-<!-- </div> -->
+</div>
 
 ---
 
-## 📋 Table of Contents
+## 📑 Table of Contents
 
-- [📸 Screenshots](#screenshots)
-- [⚙️ Prerequisites](#prerequisites)
-- [🚀 Installation](#installation)
-- [💻 Usage](#usage)
-- [✨ Features](#features)
-- [🗺️ Roadmap](#roadmap)
-- [🤝 Contributing](#contributing)
-- [❓ FAQ](#faq)
-- [📄 License](#license)
-- [👤 Contact](#contact)
-- [🙏 Acknowledgements](#acknowledgements)
-
-## 📸 Screenshots
-
-> Here is the sentiment distribution table.
-
-![Screenshot](./results/sentiment%20distribution.png)
-
-> Here is the positive wordcloud.
-
-![Screenshot](./results/positive%20wordcloud.png)\
-
-> Here is the negative wordcloud.
-
-![Screenshot](./results/negative%20wordcloud.png)
-
-> Here is the neutral wordcloud.
-
-![Screenshot](./results/neutral%20wordcloud.png)
-
-
-## ⚙️ Prerequisites
-
-- Python 3.8 or higher
-- Google Colab or Jupyter Notebook with GPU support (recommended)
-- Google Drive access (if running on Colab, for saving/loading model and dataset)
-
-## 🚀 Installation
-
-```bash
-pip install torch transformers scikit-learn pandas numpy nltk wordcloud matplotlib nlpaug emoji accelerate
-```
-
-## 💻 Usage
-
-```bash
-from predict import predict_sentiment
-
-comment = "The new compliance rule is confusing and adds too much paperwork."
-result = predict_sentiment(comment)
-print(result)  # Output: Negative
-```
-
-## ✨ Features
-
-- ✅ Classifies public comments into Positive, Negative, or Neutral sentiment
-- ✅ Modular preprocessing pipeline — add or remove cleaning steps without touching other code
-- ✅ Data augmentation (synonym replacement, insertion, swap, deletion) applied only to training data to avoid leakage
-- ✅ Stratified train/val/test split performed before augmentation for honest evaluation
-- ✅ Generates a word cloud for overall comments and for each sentiment class
-- ✅ Produces a short summary report with sentiment breakdown and top keywords per class
-- ✅ Reusable predict_sentiment() function for quick testing on new comments
-
-## 🗺️ Roadmap
-
-- [ ] Train on real MCA eConsultation comments instead of synthetic data
-- [ ] Add negation-aware preprocessing to fix idiom misclassification (e.g. "no complaints so far")
-- [ ] Build a dedicated hard-examples test set for evaluating natural, mixed-tone language
-- [ ] Deploy as an API for real-time comment scoring
-
-See the [open issues](https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis/issues) for proposed features and known issues.
-
-## 🤝 Contributing
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## ❓ FAQ
-
-**Q: How do I get started?**
-A: Follow the installation guide above.
-
-**Q: How do I report a bug?**
-A: Open an issue on the [GitHub Issues](https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis/issues) page.
-
-**Q: Can I contribute?**
-A: Yes! See the Contributing section above.
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## 👤 Contact
-
-**Ankit Kumar Jha**
-- GitHub: [@Ankit-Kumar-Jha-01](https://github.com/Ankit-Kumar-Jha-01)
-- Email: [anjha8409@gmail.com](mailto:anjha8409@gmail.com)
-- Project: [https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis](https://github.com/Ankit-Kumar-Jha-01/nlp-model-for-mca-econsultation-sentiment-analysis)
-
-## 🙏 Acknowledgements
-
-- Hugging Face for the DistilBERT model and Transformers library
-- Ministry of Corporate Affairs (MCA) eConsultation platform for the use-case inspiration
+1. [Overview](#-overview)
+2. [Requirements](#-requirements)
+3. [Project Structure](#-project-structure)
+4. [Data](#-data)
+5. [Installation](#-installation)
+6. [Project Methodology](#-project-methodology)
+7. [Visualization](#-visualization)
+8. [Technology Used](#-technology-used)
+9. [Future Improvements](#-future-improvements)
 
 ---
 
-<div align="center">Made with ❤️ by Ankit Kumar Jha</div>
+## 🔎 Overview
+
+This project fine-tunes **DistilBERT** to classify public comments submitted during MCA (Ministry of Corporate Affairs) eConsultation processes into **Positive / Negative / Neutral** sentiment — simulating a real platform use case: given thousands of comments on a proposed rule, how many support it, oppose it, or are undecided?
+
+This version fixes a **data-leakage bug** from an earlier iteration by splitting train/val/test **before** any text augmentation, so validation and test sets are guaranteed to never contain augmented duplicates of training comments.
+
+| Metric (Test Set) | Score |
+|---|---|
+| 🎯 Accuracy | **1.000** |
+| 📐 Precision | **1.000** |
+| 🔁 Recall | **1.000** |
+| 🧮 F1 Score | **1.000** |
+| 📉 Eval Loss | 0.0000250 |
+
+> ⚠️ **Note:** These perfect scores reflect a **synthetic dataset** built for prototyping, not real-world MCA comment data — patterns are more separable than genuine public comments would be. Treat this as a validated pipeline, not a production-ready accuracy claim (see [Future Improvements](#-future-improvements)).
+
+---
+
+## ⚙️ Requirements
+
+- Python 3.10+
+- GPU recommended (trained on Google Colab)
+- Google Drive (for dataset + checkpoint storage)
+
+**Python packages:**
+```
+datasets
+torch
+transformers==4.56.0
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+wordcloud
+nltk
+emoji
+accelerate
+nlpaug
+```
+
+---
+
+## 🗂️ Project Structure
+
+```
+mca_econsultation_leakage_free/
+├── comments_dataset.csv           # raw input: comment, sentiment
+├── train_augmented.csv            # saved augmented training set
+└── Sentimental_comments/
+    ├── results/                   # Trainer checkpoints (per-epoch)
+    ├── logs/                      # training logs
+    └── final_model/               # saved fine-tuned model + tokenizer
+```
+
+---
+
+## 📊 Data
+
+- **Format:** CSV with two columns — `comment` (raw text) and `sentiment` (positive / negative / neutral)
+- **Nature:** Synthetic dataset built for prototyping (not scraped from live MCA submissions)
+- **Split:** 80% train / 10% validation / 10% test — **stratified by label**, done *before* augmentation
+- **Augmentation:** Applied only to the training split — synonym replacement, random insertion, random swap, random deletion, plus extra keyword-based augmentation for the neutral class (to address class imbalance)
+
+---
+
+## 🛠️ Installation
+
+```bash
+# 1. Clone the repository
+git clone <your-repo-url>
+cd <your-repo-folder>
+
+# 2. Install dependencies
+pip install -q datasets torch scikit-learn pandas numpy matplotlib seaborn wordcloud nltk emoji accelerate nlpaug
+pip install --upgrade transformers==4.56.0
+
+# 3. Download NLTK data
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
+
+# 4. Place comments_dataset.csv in the expected data folder, then run the script/notebook
+```
+
+---
+
+## 🧭 Project Methodology
+
+1. **Mount storage** — Google Drive for dataset and model persistence
+2. **Load data** — CSV with `comment` and `sentiment` columns
+3. **Modular preprocessing pipeline** — each cleaning technique (emoji removal, special-character stripping, lowercasing) is a standalone function chained in an ordered list, so steps can be added/removed without touching other code
+4. **Label mapping** — sentiment strings mapped to integers (negative=0, neutral=1, positive=2)
+5. **Split before augmentation** *(the key leakage fix)* — train/val/test split on original, clean comments only, so val/test are never touched by augmentation
+6. **Modular augmentation pipeline (train set only)** — synonym replacement, random insertion, random swap, random deletion, plus keyword augmentation for underrepresented neutral comments
+7. **Tokenize** — DistilBERT tokenizer, max length 90, padded/truncated
+8. **Wrap in PyTorch `Dataset`** — custom `FeedbackDataset` class for train/val/test
+9. **Load model** — `distilbert-base-uncased` fine-tuned for 3-class classification
+10. **Train** — Hugging Face `Trainer`, 3 epochs, batch size 16, learning rate 3e-5, best model loaded at end
+11. **Evaluate on held-out test set** — honest score, no augmented/leaked data
+12. **Save model + tokenizer** — for reuse in inference
+13. **Predict function** — reuses the same preprocessing pipeline for consistent inference on new text
+14. **Full-dataset prediction** — simulates the real deployment use case: sentiment breakdown across all submitted comments
+15. **Visualization** — bar chart of sentiment distribution, word clouds (overall + per sentiment)
+16. **Summary report** — plain-text breakdown of comment counts, percentages, and top words per sentiment class
+
+**Training configuration:**
+
+| Parameter | Value |
+|---|---|
+| Base model | `distilbert-base-uncased` |
+| Epochs | 3 |
+| Batch size (train/eval) | 16 / 16 |
+| Learning rate | 3e-5 |
+| Weight decay | 0.01 |
+| Max sequence length | 90 |
+| Eval/save strategy | Per epoch |
+| Best model selection | `load_best_model_at_end=True` |
+
+**Training results (per epoch):**
+
+| Epoch | Training Loss | Validation Loss | Accuracy | Precision | Recall | F1 |
+|---|---|---|---|---|---|---|
+| 1 | 0.0129 | 0.000112 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 2 | 0.0068 | 0.000035 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 3 | 0.0026 | 0.000025 | 1.000 | 1.000 | 1.000 | 1.000 |
+
+---
+
+## 📈 Visualization
+
+Generated at the end of the pipeline:
+
+- 📊 **Sentiment distribution bar chart** — count of Positive / Neutral / Negative predictions across all comments
+- ☁️ **Word clouds** — one for all comments combined, plus one per sentiment class, to surface the most common terms driving each label
+- 📝 **Text summary report** — total comments analyzed, per-class percentage breakdown, and top 8 words per sentiment
+
+*(Add your actual chart/word-cloud images here once exported, e.g. `![Sentiment Distribution](results/sentiment_distribution.png)` — happy to wire these in with real filenames, same as the traffic sign project.)*
+
+---
+
+## 🧰 Technology Used
+
+| Category | Tools |
+|---|---|
+| Model | ![DistilBERT](https://img.shields.io/badge/DistilBERT-base--uncased-blue) |
+| Framework | ![Transformers](https://img.shields.io/badge/🤗_Transformers-FFD21E) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white) |
+| Text augmentation | ![nlpaug](https://img.shields.io/badge/nlpaug-synonym%2Finsert%2Fswap%2Fdelete-8A2BE2) |
+| NLP preprocessing | ![NLTK](https://img.shields.io/badge/NLTK-stopwords%2Ftokenize-green) |
+| Visualization | ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?logo=plotly&logoColor=white) ![WordCloud](https://img.shields.io/badge/WordCloud-lightgrey) |
+| Experiment tracking | ![W&B](https://img.shields.io/badge/Weights_%26_Biases-offline_mode-FFBE00?logo=weightsandbiases&logoColor=black) |
+| Compute | ![Colab](https://img.shields.io/badge/Google_Colab-F9AB00?logo=googlecolab&logoColor=white) |
+
+---
+
+## 🚀 Future Improvements
+
+- 🧪 **Validate on real, unseen MCA comments** — current perfect scores come from a synthetic dataset; the true test is generalization to genuine public submissions
+- ⚖️ Further address class imbalance beyond keyword-based neutral augmentation (e.g. back-translation, LLM-generated paraphrases)
+- 🌐 Add support for Hindi / code-mixed comments, common in real MCA submissions
+- 📦 Wrap the trained model behind a simple API endpoint for integration into an MCA-facing dashboard
+- 📊 Add a confusion matrix and per-class precision/recall breakdown to catch class-specific weaknesses that overall accuracy can hide
+- 🔁 Re-run evaluation periodically as new comment batches arrive, to monitor for concept drift
+
+---
+
+<div align="center">
+Built with DistilBERT · Trained on Google Colab
+</div>
