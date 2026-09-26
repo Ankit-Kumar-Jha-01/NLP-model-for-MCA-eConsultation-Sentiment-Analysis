@@ -210,5 +210,5 @@ All charts below are generated automatically at the end of the pipeline and live
 ---
 
 <div align="center">
-Built with DistilBERT · Trained on Google Colab
+Built with DistilBERT · Trained on Google Colab · Author: Ankit Kumar Jha
 </div>
