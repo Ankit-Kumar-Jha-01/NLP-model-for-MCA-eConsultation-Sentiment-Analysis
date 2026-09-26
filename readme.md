@@ -110,7 +110,7 @@ pip install --upgrade transformers==4.56.0
 # 3. Download NLTK data
 python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 
-# 4. Place comments_dataset.csv in the expected data folder, then run the script/notebook
+
 ```
 
 ---
@@ -160,15 +160,6 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 ## 📈 Visualization
 
 All charts below are generated automatically at the end of the pipeline and live in the [`results/`](./results) folder.
-
-> ⚠️ **Rename these files first** (spaces in GitHub filenames break Markdown image links):
-
-| Current filename | Rename to |
-|---|---|
-| `sentiment distribution.png` | `sentiment_distribution.png` |
-| `positive wordcloud.png` | `positive_wordcloud.png` |
-| `negative wordcloud.png` | `negative_wordcloud.png` |
-| `neutral wordcloud.png` | `neutral_wordcloud.png` |
 
 ### Sentiment Distribution
 
