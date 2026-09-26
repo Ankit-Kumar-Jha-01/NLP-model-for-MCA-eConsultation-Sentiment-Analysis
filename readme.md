@@ -159,13 +159,37 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 
 ## 📈 Visualization
 
-Generated at the end of the pipeline:
+All charts below are generated automatically at the end of the pipeline and live in the [`results/`](./results) folder.
 
-- 📊 **Sentiment distribution bar chart** — count of Positive / Neutral / Negative predictions across all comments
-- ☁️ **Word clouds** — one for all comments combined, plus one per sentiment class, to surface the most common terms driving each label
-- 📝 **Text summary report** — total comments analyzed, per-class percentage breakdown, and top 8 words per sentiment
+> ⚠️ **Rename these files first** (spaces in GitHub filenames break Markdown image links):
 
-*(Add your actual chart/word-cloud images here once exported, e.g. `![Sentiment Distribution](results/sentiment_distribution.png)` — happy to wire these in with real filenames, same as the traffic sign project.)*
+| Current filename | Rename to |
+|---|---|
+| `sentiment distribution.png` | `sentiment_distribution.png` |
+| `positive wordcloud.png` | `positive_wordcloud.png` |
+| `negative wordcloud.png` | `negative_wordcloud.png` |
+| `neutral wordcloud.png` | `neutral_wordcloud.png` |
+
+### Sentiment Distribution
+
+<img src="results/sentiment_distribution.png" alt="Sentiment Distribution" width="500"/>
+
+*Count of Positive / Neutral / Negative predictions across all analyzed comments.*
+
+### Word Clouds by Sentiment
+
+<table>
+<tr>
+<td><img src="results/positive_wordcloud.png" alt="Positive Word Cloud" width="300"/></td>
+<td><img src="results/neutral_wordcloud.png" alt="Neutral Word Cloud" width="300"/></td>
+<td><img src="results/negative_wordcloud.png" alt="Negative Word Cloud" width="300"/></td>
+</tr>
+<tr>
+<td align="center"><sub>Positive Comments</sub></td>
+<td align="center"><sub>Neutral Comments</sub></td>
+<td align="center"><sub>Negative Comments</sub></td>
+</tr>
+</table>
 
 ---
 
